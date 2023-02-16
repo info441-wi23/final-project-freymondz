@@ -1,0 +1,31 @@
+{
+  "name": "synchub",
+  "version": "1.0.0",
+  "description": "INFO 441 Final Project",
+  "main": "app.js",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "engines": {
+    "node": ">=17.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/info441-wi23/final-project-freymondz.git"
+  },
+  "author": "Zachary, Jeffry, Ting",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/info441-wi23/final-project-freymondz/issues"
+  },
+  "homepage": "https://github.com/info441-wi23/final-project-freymondz#readme",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1",
+    "morgan": "^1.10.0"
+  }
+}
