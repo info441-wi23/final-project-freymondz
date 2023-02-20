@@ -5,6 +5,9 @@
   "main": "app.js",
   "private": "true",
   "type": "module",
+  "presets": [
+    "@babel/preset-react"
+  ],
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -26,8 +29,16 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "fetch": "^1.1.0",
     "microsoft-identity-express": "^1.0.0-beta",
     "mongoose": "^6.9.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-react": "^7.18.6"
   }
 }
