@@ -1,20 +1,49 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SyncHub</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="javascripts/index.js"></script>
+    <script type="module" src="javascripts/index.js"></script>
 </head>
-<body class="center column flex" onload="getShows()">
-    <nav class="flex row center">
-        <h1>SyncHub</h1>
-        <a href="/login">Login</a>
-    </nav>
 
-    <div class="shows-container">
+<body>
+    <div class="home">
+        <div class="top">
+          <div class="wrapper">
+            <img
+              class="logo"
+              src="assets/logo1.png"
+              alt=""
+              height="150"
+            />
+            <button class="loginButton">Sign In</button>
+          </div>
+        </div>
+        <div class="container">
+          <h1>Unlimited TV show reviews, ratings, and more.</h1>
+          <h2>Discover your next favorite TV show!</h2>
+          <p>
+            Ready to find your next binge-watch? Enter your keywords and explore now!
+          </p>
+            <div class="input">
+              <input id="keywordsInput" placeholder="enter your keywords..." />
+              <button class="searchButton">
+                Explore
+              </button>
+            </div>
+        </div>
+      </div>
 
-    </div>
+      <div class="shows-container">
+
+      </div>
+
 </body>
+
 </html>
+
