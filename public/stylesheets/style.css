@@ -67,7 +67,7 @@ body{
 }
 
 .home .top .wrapper .loginButton {
-    background-color: #4d307f;
+    background-color: #7a26c1;
     border: none;
     color: white;
     border-radius: 5px;
@@ -90,10 +90,10 @@ body{
     color: white;
 }
 .home .container h1 {
-    font-size: 50px;
+    font-size: 70px;
 }
 .home .container h2 {
-    margin: 20px;
+    margin: 10px;
 }
 .home .container p {
     font-size: 20px;
@@ -117,7 +117,7 @@ body{
 .home .container .input .searchButton {
     flex: 2;
     height: 100%;
-    background-color: #4d307f;
+    background-color: #7a26c1;
     border: none;
     color: white;
     font-size: 22px;
@@ -132,7 +132,7 @@ body{
     overflow-y: auto;
 }
 
-.shows-container li {
+.shows-container a {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -143,17 +143,23 @@ body{
     border-radius: 12px;
     text-align: center;
     background: #272727;
+    text-decoration: none;
 }
 
-.shows-container li img {
+.shows-container a img {
     max-width: 300px;
     border-radius: 12px;
 }
 
-.shows-container li h2 {
+.shows-container a h2 {
     color: #fff;
     font-size: 1.8em;
     padding: 15px 10px 0;
-    margin-top: auto;
+    margin-top: 10px;
     font-family: "Oswald", sans-serif;
+    text-decoration: none;
+}
+
+.shows-container a h3 {
+    color: #7a26c1;
 }

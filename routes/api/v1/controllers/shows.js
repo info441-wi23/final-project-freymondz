@@ -7,10 +7,11 @@ router.get('/', async (req, res) => {
     const shows = await req.models.show.find({});
     console.log(shows)
     const previews = shows.map(show =>
-        `<li>
+        `<a href="/shows/${show.showId}" class="show-item" target="_blank">
             <img src="${show.img}" alt="${show.title}" />
+            <h3>Show ID: ${show.showId}</h3>
             <h2>${show.title}</h2>
-        <li>`
+        </a>`
     );
 
     res.status(200).json(previews);
@@ -30,10 +31,15 @@ router.get('/explore', async (req, res) => {
     console.log(data)
   
     const previews = data.results.map(show => 
-    
-        `<li><img src="${show.image.url}"><h2>${show.title}</h2></li>`
-    
+        `<a href="/shows/${show.id.split("tt")[1].slice(0, -1)}" class="show-item" target="_blank">
+            <li>
+                <img src="${show.image.url}">
+                <h3>Show ID: ${show.id.split("tt")[1].slice(0, -1)}</h3>
+                <h2>${show.title}</h2>
+            </li>
+        </a>`
     );
+
     console.log(previews)
   
     res.status(200).json(previews);
