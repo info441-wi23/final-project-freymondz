@@ -51,25 +51,15 @@ As developers, we would like to build this application because this is an opport
   }
 }
 ```
+
 #### Shows Collection
 
 ```js
 {
   _id: ObjectId(),
+  showId: String,
   title: String,
   img: String
-}
-```
-
-#### Episodes Collection
-
-```js
-{
-  _id: ObjectId(),
-  showId: ObjectId(),
-  season: Number,
-  epsiode: Number,
-  title: String
 }
 ```
 
@@ -79,7 +69,8 @@ As developers, we would like to build this application because this is an opport
 {
   _id: ObjectId(),
   userId: ObjectId(),
-  epsiodeId: ObjectId(),
+  showId: String,
+  username: String,
   rating: Number,
   review: String
 }
