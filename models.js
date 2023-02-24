@@ -7,10 +7,13 @@ console.log("Connected to MongoDB");
 
 const models = {};
 
+//add show id to be the same as imdb api id
 const showSchema = new mongoose.Schema({
     title: String,
     img: String
 });
+
+
 
 models.show = mongoose.model("show", showSchema);
 
