@@ -70,11 +70,11 @@ body{
     background-color: #7a26c1;
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 20px;
     margin-right: 10px;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
     cursor: pointer;
 }
 .home .container {
@@ -90,13 +90,17 @@ body{
     color: white;
 }
 .home .container h1 {
-    font-size: 70px;
+    font-size: 60px;
+    font-weight: 400;
 }
 .home .container h2 {
     margin: 10px;
+    font-weight: 400;
 }
 .home .container p {
+    margin-top: 40px;
     font-size: 20px;
+    font-weight: 200;
 }
 .home .container .input {
     width: 40%;
@@ -106,8 +110,16 @@ body{
     justify-content: space-between;
     margin-top: 20px;
     height: 50px;
-    border-radius: 5px;
 }
+
+.home .container .input #keywordsInput {
+    font-size: 18px;
+}
+
+.home .container .input #keywordsInput:focus {
+    outline-color: #7a26c1;
+}
+
 .home .container .input input {
     flex: 9;
     height: 100%;
@@ -120,7 +132,7 @@ body{
     background-color: #7a26c1;
     border: none;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -156,7 +168,6 @@ body{
     font-size: 1.8em;
     padding: 15px 10px 0;
     margin-top: 10px;
-    font-family: "Oswald", sans-serif;
     text-decoration: none;
 }
 
