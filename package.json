@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/info441-wi23/final-project-freymondz#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
