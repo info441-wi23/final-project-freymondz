@@ -9,7 +9,8 @@ const models = {};
 
 const showSchema = new mongoose.Schema({
     title: String,
-    img: String
+    img: String,
+    showId: Number,
 });
 
 const userSchema = new mongoose.Schema({
