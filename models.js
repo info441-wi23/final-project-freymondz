@@ -12,6 +12,13 @@ const showSchema = new mongoose.Schema({
     img: String
 });
 
+const userSchema = new mongoose.Schema({
+    username: String,
+    name: String,
+    picture: String,
+});
+
 models.show = mongoose.model("show", showSchema);
+models.user = mongoose.model("user", userSchema);
 
 export default models;
