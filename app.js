@@ -62,8 +62,8 @@ app.get('/unauthorized', (req, res) => {
     res.status(401).send("Error: Unauthorized");
 });
 
-app.listen(3001, "localhost", () => {
-    console.log('Server is running on http://localhost:3001/');
+app.listen(8080, () => {
+    console.log('Server is running on port 8080');
 });
 
 export default app;
