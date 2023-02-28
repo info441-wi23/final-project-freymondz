@@ -9,12 +9,26 @@ const models = {};
 
 //add show id to be the same as imdb api id
 const showSchema = new mongoose.Schema({
+    imdbid: String,
     title: String,
     img: String
 });
 
-
-
 models.show = mongoose.model("show", showSchema);
 
+const userSchema = new mongoose.Schema({
+    username: String
+})
+
+models.user = mongoose.model("user", userSchema);
+
+const reviewSchema = new mongoose.Schema({
+    userID: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
+    showID: {type: mongoose.Schema.Types.ObjectId, ref: "show"},
+    username: String,
+    showname: String,
+    review: String
+})
+
+models.review = mongoose.model("review", reviewSchema)
 export default models;

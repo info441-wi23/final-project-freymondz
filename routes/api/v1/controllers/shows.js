@@ -17,6 +17,27 @@ router.get('/', async (req, res) => {
     res.status(200).json(previews);
 });
 
+//post a new show to mongodb when user clicks on the show using imdbid?
+router.post('/', async(req, res) => {
+    let allShows = req.models.show.find();
+    let filteredShows = allShows.filter(show => show.imdbid == req.query.imdbid)
+    if (filteredShows.length == 0) {
+        try{
+            const newShow = new req.models.show({
+                imdbid: req.query.imdbid,
+                title: req.body.title,
+                img: req.body.img
+            })
+            await newShow.save()
+            console.log("New show added to front page")
+            res.json({"status":"success"})
+        } catch(error) {
+            console.log(error)
+            res.status(500).send({"status": "error", "error": error}) 
+        }
+    } 
+})
+
 router.get('/explore', async (req, res) => {
     const keywords = req.query.keywords;
     const options = {
