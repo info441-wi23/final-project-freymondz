@@ -3,19 +3,16 @@ var router = express.Router();
 
 // find all the reviews from mongodb for the show that is requested
 router.get('/', async(req, res) => {
-    if(req.query.username) {
-        try {
-            let show = req.query.showID
-            let showReivews = await req.models.Review.find({show: show})
-            res.json(showReivews)
-        } catch(error) {
-            res.status(500).json({"status": "error", "error": error})
-        }
+    try {
+        let show = req.query.showID
+        let showReivews = await req.models.Review.find({show: show})
+        res.json(showReivews)
+    } catch(error) {
+        res.status(500).json({"status": "error", "error": error})
     }
 })
 
-// question just use  req.session.account.username bc auth 
-// if use username: when do we ask user to make one?
+// This router will add new reviews to the mongodb reviews schema
 router.post('/', async(req, res) => {
     console.log("trying to post comments to mongodb")
     try{
