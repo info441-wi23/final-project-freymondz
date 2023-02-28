@@ -1,12 +1,15 @@
 import showsRouter from './controllers/shows.js';
+
 import reviewsRouter from './controllers/reviews.js';
-import userRouter from './controllers/info.js';
+import infoRouter from './controllers/info.js';
+import userRouter from './controllers/users.js';
 
 import { Router } from 'express';
 const router = Router();
 
 router.use('/shows', showsRouter);
 router.use('/reviews', reviewsRouter);
-router.use('/user', userRouter);
+router.use('/info', infoRouter);
+router.use('/users', userRouter);
 
 export default router

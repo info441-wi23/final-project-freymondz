@@ -3,6 +3,7 @@ import 'dotenv/config.js';
 import logger from 'morgan';
 import express from 'express';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import { WebAppAuthClientBuilder } from 'microsoft-identity-express';
 
 import models from './models.js';
@@ -14,10 +15,11 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
+app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     }

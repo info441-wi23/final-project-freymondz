@@ -11,10 +11,18 @@ const models = {};
 const showSchema = new mongoose.Schema({
     imdbid: String,
     title: String,
-    img: String
+    img: String,
+    showId: Number,
+});
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    name: String,
+    picture: String,
 });
 
 models.show = mongoose.model("show", showSchema);
+models.user = mongoose.model("user", userSchema);
 
 const userSchema = new mongoose.Schema({
     username: String
