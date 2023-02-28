@@ -1,8 +1,8 @@
 import express from 'express';
-var router = express.Router();
+const router = express.Router();
 
 router.get('/', async(req, res) => {
 
 })
 
-export default Router;
+export default router;
