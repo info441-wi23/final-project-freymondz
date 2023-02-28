@@ -17,19 +17,20 @@ router.get('/', async (req, res) => {
     res.status(200).json(previews);
 });
 
-//post a new show to mongodb when user clicks on the show using imdbid?
+// when user clicks on a show, this post router checks to see if the show is already in the schema
+// if it is not then it adds the 
 router.post('/', async(req, res) => {
-    let allShows = req.models.show.find();
-    let filteredShows = allShows.filter(show => show.imdbid == req.query.imdbid)
+    let allShows = req.models.show.find({});
+    let filteredShows = allShows.filter(show => show.showId == req.query.showId)
     if (filteredShows.length == 0) {
         try{
             const newShow = new req.models.show({
-                imdbid: req.query.imdbid,
+                showID: req.query.showId,
                 title: req.body.title,
                 img: req.body.img
             })
             await newShow.save()
-            console.log("New show added to front page")
+            console.log("New show added to schema (front page)")
             res.json({"status":"success"})
         } catch(error) {
             console.log(error)
