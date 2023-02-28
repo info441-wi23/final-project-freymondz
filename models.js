@@ -22,11 +22,6 @@ const userSchema = new mongoose.Schema({
 });
 
 models.show = mongoose.model("show", showSchema);
-models.user = mongoose.model("user", userSchema);
-
-const userSchema = new mongoose.Schema({
-    username: String
-})
 
 models.user = mongoose.model("user", userSchema);
 
