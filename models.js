@@ -9,10 +9,9 @@ const models = {};
 
 //add show id to be the same as imdb api id
 const showSchema = new mongoose.Schema({
-    imdbid: String,
     title: String,
     img: String,
-    showId: Number,
+    showId: Number
 });
 
 const userSchema = new mongoose.Schema({
