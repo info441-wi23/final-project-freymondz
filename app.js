@@ -32,7 +32,7 @@ const appSettings = {
         clientSecret: process.env.CLIENT_SECRET
     },
     authRoutes: {
-        redirect: 'http://localhost:3001/redirect',
+        redirect: 'https://synchub.fly.dev/redirect',
         error: '/error',
         unauthorized: '/unauthorized'
     }
@@ -62,8 +62,8 @@ app.get('/unauthorized', (req, res) => {
     res.status(401).send("Error: Unauthorized");
 });
 
-app.listen(8080, () => {
-    console.log('Server is running on port 8080');
+app.listen(8081, () => {
+    console.log('Server is running on port 8081');
 });
 
 export default app;
