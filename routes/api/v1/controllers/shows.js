@@ -7,14 +7,20 @@ router.get('/', async (req, res) => {
     const shows = await req.models.show.find({});
     console.log(shows)
     const previews = shows.map(show =>
-        `<a href="/shows/${show.showId}" class="show-item" target="_blank">
+        `<a href="/showDetail.html?showId=${show.showId}" data-show-id="${show.showId}" class="show-item" target="_blank">
             <img src="${show.img}" alt="${show.title}" />
             <h3>Show ID: ${show.showId}</h3>
             <h2>${show.title}</h2>
         </a>`
     );
-
     res.status(200).json(previews);
+});
+
+router.get('/:showId', async (req, res) => {
+    const showId = req.params.showId;
+    const show = await req.models.show.find({ showId: showId });
+    console.log(show)
+    res.status(200).json(show);
 });
 
 // when user clicks on a show, this post router checks to see if the show is already in the schema

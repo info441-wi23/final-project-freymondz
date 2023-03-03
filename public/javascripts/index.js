@@ -26,3 +26,24 @@ async function getShows() {
 
     showsContainer.scrollIntoView({ behavior: 'smooth' });
 }
+
+const showsContainer = document.querySelector('.shows-container');
+showsContainer.addEventListener('click', async (event) => {
+  const showItem = event.target.closest('.show-item');
+  if (!showItem) return; // do nothing if click was not on a show item
+  console.log(showItem)
+  const showId = showItem.dataset.showId;
+  await getShowDetail(showId);
+});
+
+async function getShowDetail(showId) {
+    const response = await fetch(`/api/v1/shows/${showId}`);
+    const data = await response.json();
+    const show = data[0];
+    const showContainer = document.querySelector('.showDetail-container');
+    showContainer.innerHTML = `
+          <h1>${show.title}</h1>
+          <img src="${show.img}">
+      `;
+  }
+  
