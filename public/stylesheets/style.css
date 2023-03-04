@@ -79,6 +79,14 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
+
+.home .top .wrapper .profile {
+    margin-left: auto;
+    margin-right: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
 .home .container {
     display: flex;
     margin: 10rem 0px;
