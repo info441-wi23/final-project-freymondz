@@ -73,6 +73,8 @@ As developers, we would like to build this application because this is an opport
   showId: String,
   username: String,
   rating: Number,
-  review: String
+  review: String,
+  season: Number,
+  eposide: Number
 }
 ```
