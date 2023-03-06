@@ -11,8 +11,10 @@ const models = {};
 const showSchema = new mongoose.Schema({
     title: String,
     img: String,
-    showId: Number
+    showId: String
 });
+
+models.show = mongoose.model("show", showSchema);
 
 const userSchema = new mongoose.Schema({
     username: String,
@@ -20,16 +22,16 @@ const userSchema = new mongoose.Schema({
     picture: String,
 });
 
-models.show = mongoose.model("show", showSchema);
-
 models.user = mongoose.model("user", userSchema);
 
 const reviewSchema = new mongoose.Schema({
-    userID: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
-    showID: {type: mongoose.Schema.Types.ObjectId, ref: "show"},
-    username: String,
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
+    showId: String,
     showname: String,
-    review: String
+    username: String,
+    review: String,
+    season: Number,
+    eposide: Number,
 })
 
 models.review = mongoose.model("review", reviewSchema)
