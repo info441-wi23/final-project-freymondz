@@ -1,5 +1,5 @@
 const searchButton = document.querySelector('.searchButton');
-    searchButton.addEventListener('click', async () => {
+    searchButton?.addEventListener('click', async () => {
     await getShows();
 });
 
@@ -7,6 +7,7 @@ const searchButton = document.querySelector('.searchButton');
 async function getShows() {
     const keywordsInput = document.querySelector('#keywordsInput');
     const keywords = keywordsInput.value;
+    console.log(keywords)
 
     const showsContainer = document.querySelector('.shows-container');
     showsContainer.innerHTML = '';
@@ -14,36 +15,16 @@ async function getShows() {
     if (keywords) {
         const response = await fetch(`/api/v1/shows/explore/?keywords=${keywords}`);
         const results = await response.json();
-        showsContainer.innerHTML = results.map(show => show).join('');
+        const previews = results.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     } else {
         const response = await fetch('/api/v1/shows');
         const data = await response.json();
-        for (const show of data) {
-            const showPreview = new DOMParser().parseFromString(show, 'text/html').body;
-            showsContainer?.appendChild(showPreview);
-        }
+        const previews = data.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     }
 
-    showsContainer.scrollIntoView({ behavior: 'smooth' });
+    showsContainer.scrollIntoView({ behavior: 'smooth'});
 }
 
-const showsContainer = document.querySelector('.shows-container');
-showsContainer.addEventListener('click', async (event) => {
-  const showItem = event.target.closest('.show-item');
-  if (!showItem) return; // do nothing if click was not on a show item
-  console.log(showItem)
-  const showId = showItem.dataset.showId;
-  await getShowDetail(showId);
-});
-
-async function getShowDetail(showId) {
-    const response = await fetch(`/api/v1/shows/${showId}`);
-    const data = await response.json();
-    const show = data[0];
-    const showContainer = document.querySelector('.showDetail-container');
-    showContainer.innerHTML = `
-          <h1>${show.title}</h1>
-          <img src="${show.img}">
-      `;
-  }
   
