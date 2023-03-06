@@ -5,8 +5,7 @@ window.addEventListener('load', async () => {
     const show = data[0];
     const showContainer = document.querySelector('.showDetail-container');
     showContainer.innerHTML = `
-          <h1>${show.title}</h1>
           <img src="${show.img}">
-          <p>${show.description}</p>
+          <h2>${show.title}</h2>
       `;
 });
