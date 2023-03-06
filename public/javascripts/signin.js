@@ -2,7 +2,7 @@ window.addEventListener('load', async () => {
     const response = await fetch('/api/v1/users/identity');
     const data = await response.json();
     const wrapper = document.querySelector('.wrapper');
-    console.log(data)
+    console.log(data);
     if (data.data) {
         const holder = document.querySelector('.loginButton');
         const profile = document.createElement('a');
@@ -15,8 +15,12 @@ window.addEventListener('load', async () => {
         logout.href = 'logout';
         logout.innerText = 'Sign Out';
 
-        wrapper?.removeChild(holder)
+        wrapper?.removeChild(holder);
         wrapper?.appendChild(profile);
         wrapper?.appendChild(logout);
+
+        await fetch('/api/v1/users/login', {
+            method: 'POST',
+        });
     }
 });
