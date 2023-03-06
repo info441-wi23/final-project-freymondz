@@ -15,16 +15,16 @@ async function getShows() {
     if (keywords) {
         const response = await fetch(`/api/v1/shows/explore/?keywords=${keywords}`);
         const results = await response.json();
-        showsContainer.innerHTML = results.map(show => show).join('');
+        const previews = results.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     } else {
         const response = await fetch('/api/v1/shows');
         const data = await response.json();
-        for (const show of data) {
-            const showPreview = new DOMParser().parseFromString(show, 'text/html').body;
-            showsContainer?.appendChild(showPreview);
-        }
+        const previews = data.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     }
 
-    showsContainer.scrollIntoView({ behavior: 'smooth' });
+    showsContainer.scrollIntoView({ behavior: 'smooth'});
 }
+
   
