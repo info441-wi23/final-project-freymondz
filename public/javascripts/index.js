@@ -7,26 +7,21 @@ async function getShows() {
     console.log("getting shows")
     const keywordsInput = document.querySelector('#keywordsInput');
     const keywords = keywordsInput.value;
-    console.log(keywords)
 
     const showsContainer = document.querySelector('.shows-container');
     showsContainer.innerHTML = '';
 
-    console.log(keywords)
+    let response;
     if (keywords) {
-        const response = await fetch(`/api/v1/shows/explore/?keywords=${keywords}`);
-        const results = await response.json();
-        const previews = results.map(show => show).join('');
-        showsContainer.innerHTML = previews;
+        response = await fetch(`/api/v1/shows/explore/?keywords=${keywords}`);
     } else {
-        const response = await fetch('/api/v1/shows');
-        const data = await response.json();
-        const previews = data.map(show => show).join('');
-        showsContainer.innerHTML = previews;
+        response = await fetch('/api/v1/shows');
     }
 
-    showsContainer.scrollIntoView({ behavior: 'smooth'});
-}
+    const results = await response.json();
+    const previews = results.map(show => show).join('');
+    showsContainer.innerHTML = previews;
+     showsContainer.scrollIntoView({ behavior: 'smooth'});
 
 const showsContainer = document.querySelector('.shows-container');
 showsContainer.addEventListener('click', async (event) => {
@@ -62,7 +57,6 @@ async function getShowReivew(showId) {
     }).join(" ");
     
 }
-
 
 async function addReview(){
     console.log("clicked")

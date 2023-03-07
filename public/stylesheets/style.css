@@ -2,15 +2,6 @@
 
 /* scroll bar styling */
 
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: #7a26c1;
-    border-radius: 10px;
-}
-
 body{
     margin: 0;
     padding: 0;
@@ -45,6 +36,10 @@ body{
     cursor: pointer;
 }
 
+
+.home .top .wrapper .loginButton:hover {
+    background-color: #551a8b;
+
 .home .top .wrapper .profile {
     margin-left: auto;
     margin-right: 1rem;
@@ -54,14 +49,14 @@ body{
 
 .home .container {
     display: flex;
-    margin: 10rem 0px;
+    margin: 4rem 0px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
 }
 .home .container h1 {
-    font-size: 3.8rem;
+    font-size: 3.5rem;
     font-weight: 600;
 }
 .home .container h2 {
@@ -108,6 +103,10 @@ body{
     cursor: pointer;
 }
 
+.home .container .input .searchButton:hover {
+    background-color: #551a8b;
+}
+
 .shows-container {
     display: flex;
     flex-wrap: wrap;
@@ -119,7 +118,7 @@ body{
 .shows-container a {
     flex: 1;
     align-items: center;
-    margin: 0.8rem;
+    margin: 0.6rem;
     padding: 1rem;
     border-radius: 0.8rem;
     text-align: center;
@@ -130,13 +129,13 @@ body{
 
 .shows-container a img {
     margin-top: 1.4rem;
-    max-width: 18rem;
+    max-width: 16rem;
     border-radius: 0.8rem;
 }
 
 .shows-container a h2 {
     color: #fff;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     padding: 0.5rem;
     text-decoration: none;
 }
@@ -161,13 +160,15 @@ body{
     background: #272727;
     width: 70%;
     box-shadow: 0.5rem 0.4rem 0.5rem #7a26c1;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .showDetail-container img {
     float: left;
     max-width: 19rem;
     border-radius: 0.6rem;
-    margin: 3rem;
+    margin: 5rem;
 }
 
 .showDetail-container h2 {
@@ -177,6 +178,60 @@ body{
     margin: 2rem;
 }
 
+.showDetail-container p {
+    text-align: left;
+    color: #fff;
+    font-size: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 2rem;
+  }
+  
+  form label {
+    text-align: left;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  form input[type="text"],
+  form textarea {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    width: 30%;
+  }
+
+  form input[type="text"],
+  form textarea:focus {
+    outline-color: #7a26c1;
+  }
+  
+  form textarea {
+    resize: none;
+    height: 3rem;
+  }
+  
+  form button[type="submit"] {
+    padding: 0.8rem 1rem;
+    background-color: #7a26c1;
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    cursor: pointer;
+    width: fit-content;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #551a8b;
+  }
+  
 .profile{
     display: flex;
     justify-content: center;
@@ -211,4 +266,3 @@ body{
     margin-top: 10px;
     text-decoration: none;
 }
-
