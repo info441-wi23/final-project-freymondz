@@ -34,5 +34,5 @@ const reviewSchema = new mongoose.Schema({
     eposide: Number,
 })
 
-models.review = mongoose.model("review", reviewSchema)
+models.review = mongoose.model("review", reviewSchema);
 export default models;
