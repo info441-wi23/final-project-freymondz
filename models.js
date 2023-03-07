@@ -14,23 +14,30 @@ const showSchema = new mongoose.Schema({
     showId: Number
 });
 
+models.show = mongoose.model("show", showSchema);
+
 const userSchema = new mongoose.Schema({
     username: String,
     name: String,
     picture: String,
 });
 
-models.show = mongoose.model("show", showSchema);
-
 models.user = mongoose.model("user", userSchema);
 
 const reviewSchema = new mongoose.Schema({
+    username: String,
+    review: String,
+    rating: String
+}) 
+
+/*const reviewSchema = new mongoose.Schema({
     userID: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
     showID: {type: mongoose.Schema.Types.ObjectId, ref: "show"},
     username: String,
     showname: String,
-    review: String
-})
+    review: String,
+    Rating: String
+}) */
 
-models.review = mongoose.model("review", reviewSchema)
+models.review = mongoose.model("review", reviewSchema);
 export default models;
