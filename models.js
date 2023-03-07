@@ -25,12 +25,12 @@ const userSchema = new mongoose.Schema({
 models.user = mongoose.model("user", userSchema);
 
 const reviewSchema = new mongoose.Schema({
-    userId: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
     username: String,
     showId: String,
     review: String,
+    rating: Number,
     season: Number,
-    eposide: Number,
+    episode: Number,
 })
 
 models.review = mongoose.model("review", reviewSchema);
