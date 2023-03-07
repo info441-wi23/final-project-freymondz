@@ -13,20 +13,26 @@ router.get('/', async(req, res) => {
 })
 
 // This router will add new reviews to the mongodb reviews schema
+// not sure how to get showID
 router.post('/', async(req, res) => {
-    console.log("trying to post comments to mongodb")
+    console.log("trying to post review to mongodb")
     try{
-        const newReview = req.models.Review({
-            userID: req.session.account.username,
-            showID: req.body.showID,
-            username: req.body.username,
-            showName: req.body.showName,
+        console.log(req.session.account.username)
+        console.log(req.body.review)
+        console.log(req.body.rating)
+
+        const newReview = new req.models.review({
+            username: req.session.account.username,
             review: req.body.review,
+            rating: req.body.rating
         })
+
         await newReview.save()
+
         console.log("added new review")
-        res.json({"status":"success"})
+        res.json({status:"success"})
     } catch(error) {
+        console.log(error)
         res.status(500).send({"status": "error", "error": error}) 
     }
 })

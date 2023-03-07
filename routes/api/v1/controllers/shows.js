@@ -39,6 +39,7 @@ router.post('/', async(req, res) => {
 })
 
 router.get('/explore', async (req, res) => {
+    console.log("getting shows")
     const keywords = req.query.keywords;
     const options = {
       method: 'GET',
