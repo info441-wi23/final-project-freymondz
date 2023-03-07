@@ -39,7 +39,6 @@ router.post('/', async(req, res) => {
 })
 
 router.get('/explore', async (req, res) => {
-    console.log("getting shows")
     const keywords = req.query.keywords;
     const options = {
       method: 'GET',
@@ -50,7 +49,6 @@ router.get('/explore', async (req, res) => {
     };
     const response = await fetch(`https://imdb8.p.rapidapi.com/title/v2/find?title=${keywords}&titleType=tvSeries&limit=20&sortArg=moviemeter%2Casc`, options);
     const data = await response.json();
-    console.log(data)
     const previews = data.results.map(show => {
         const showId = show.id.split("tt")[1].slice(0, -1);
         return `<a href="/showDetail.html?showId=${showId}" class="show-item fetched">
@@ -73,6 +71,7 @@ router.get('/find', async (req, res) => {
       }
     };
     const response = await fetch(`https://imdb8.p.rapidapi.com/title/get-details?tconst=tt${showId}`, options);
+    const data = await response.json();
     res.status(200).json(data);
 });
 
