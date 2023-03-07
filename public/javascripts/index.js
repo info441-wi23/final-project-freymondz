@@ -1,5 +1,5 @@
 const searchButton = document.querySelector('.searchButton');
-    searchButton.addEventListener('click', async () => {
+    searchButton?.addEventListener('click', async () => {
     await getShows();
 });
 
@@ -7,6 +7,7 @@ async function getShows() {
     console.log("getting shows")
     const keywordsInput = document.querySelector('#keywordsInput');
     const keywords = keywordsInput.value;
+    console.log(keywords)
 
     const showsContainer = document.querySelector('.shows-container');
     showsContainer.innerHTML = '';
@@ -15,17 +16,16 @@ async function getShows() {
     if (keywords) {
         const response = await fetch(`/api/v1/shows/explore/?keywords=${keywords}`);
         const results = await response.json();
-        showsContainer.innerHTML = results.map(show => show).join('');
+        const previews = results.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     } else {
         const response = await fetch('/api/v1/shows');
         const data = await response.json();
-        for (const show of data) {
-            const showPreview = new DOMParser().parseFromString(show, 'text/html').body;
-            showsContainer?.appendChild(showPreview);
-        }
+        const previews = data.map(show => show).join('');
+        showsContainer.innerHTML = previews;
     }
 
-    showsContainer.scrollIntoView({ behavior: 'smooth' });
+    showsContainer.scrollIntoView({ behavior: 'smooth'});
 }
 
 const showsContainer = document.querySelector('.shows-container');
@@ -63,11 +63,6 @@ async function getShowReivew(showId) {
     
 }
 
-/*const Submit = document.querySelector('.Submit');
-    Submit.addEventListener('click', async () => {
-    console.log("user clicked")
-    await addReview();
-}) */
 
 async function addReview(){
     console.log("clicked")
@@ -84,4 +79,3 @@ async function addReview(){
         })
     })
 }
-  
