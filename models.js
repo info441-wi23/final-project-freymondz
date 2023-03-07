@@ -26,9 +26,8 @@ models.user = mongoose.model("user", userSchema);
 
 const reviewSchema = new mongoose.Schema({
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
-    showId: String,
-    showname: String,
     username: String,
+    showId: String,
     review: String,
     season: Number,
     eposide: Number,

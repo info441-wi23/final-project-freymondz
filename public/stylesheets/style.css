@@ -189,6 +189,22 @@ body{
     font-size: 1rem;
 }
 
+#response {
+    padding-top: 2rem;
+    display: inline-block;
+}
+
+#reload-button {
+    margin: 2rem;
+    padding: 0.8rem 1rem;
+    background-color: #7a26c1;
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -262,6 +278,7 @@ form {
   .rating input[type="radio"]:checked ~ label {
     color: #7a26c1;
   }
+  
   
 .profile{
     display: flex;
