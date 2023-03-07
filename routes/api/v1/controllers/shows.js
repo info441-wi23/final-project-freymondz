@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', async (req, res) => {
     const shows = await req.models.show.find({});
     const previews = shows.map(show =>
-        `<a href="/showDetail.html?showId=${show.showId}" class="show-item" target="_blank">
+        `<a href="/showDetail.html?showId=${show.showId}" class="show-item">
             <img src="${show.img}" alt="${show.title}" />
             <h3>Show ID: ${show.showId}</h3>
             <h2>${show.title}</h2>
@@ -52,15 +52,27 @@ router.get('/explore', async (req, res) => {
     console.log(data)
     const previews = data.results.map(show => {
         const showId = show.id.split("tt")[1].slice(0, -1);
-        return `<a href="/showDetail.html?showId=${showId}" class="show-item" target="_blank">
-            <li>
-                <img src="${show.image.url}" alt="${show.title}">
-                <h3>Show ID: ${showId}</h3>
-                <h2>${show.title}</h2>
-            </li>
-        </a>`;
+        return `<a href="/showDetail.html?showId=${showId}" class="show-item fetched">
+                    <img src="${show.image.url}" alt="${show.title}">
+                    <h3>Show ID: ${showId}</h3>
+                    <h2>${show.title}</h2>
+                </a>`;
     });
+
     res.status(200).json(previews);
+});
+
+router.get('/find', async (req, res) => {
+    const showId = req.query.showId;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '1ff98af9f2msh445a87cab3946fbp186727jsnad50d7cfcceb',
+        'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+      }
+    };
+    const response = await fetch(`https://imdb8.p.rapidapi.com/title/get-details?tconst=tt${showId}`, options);
+    res.status(200).json(data);
 });
 
 // get show detail when user clicks on a show
