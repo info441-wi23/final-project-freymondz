@@ -1,4 +1,27 @@
 window.addEventListener('load', async () => {
+    // Display show info
+    await displayShowInfo();
+
+    // Display form elements
+    await displayForm();
+
+    // Display Reviews
+    await displayReviews('');
+
+    // Submit Review
+    document.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        await submitReview();
+    });
+
+    // Filter Reviews
+    document.getElementById('sort-reviews').addEventListener('change', (event) => {
+        const sortOption = event.target.value;
+        displayReviews(sortOption);
+    });
+});
+
+async function displayShowInfo() {
     const showContainer = document.querySelector('.showDetail-container');
     showContainer.innerHTML = '<h2>Loading...</h2>'
 
@@ -15,22 +38,24 @@ window.addEventListener('load', async () => {
         const title = show.title ?? 'Title not available';
         showInfo += `<h2>${title}</h2><img src="${imageUrl}">`;
         if (show.year) {
-        showInfo += `<p>Year: ${show.year}</p>`;
+            showInfo += `<p>Year: ${show.year}</p>`;
         }
         if (show.seriesStartYear) {
-        showInfo += `<p>Series Start Year: ${show.seriesStartYear}</p>`;
+            showInfo += `<p>Series Start Year: ${show.seriesStartYear}</p>`;
         }
         if (show.seriesEndYear) {
-        showInfo += `<p>Series End Year: ${show.seriesEndYear}</p>`;
+            showInfo += `<p>Series End Year: ${show.seriesEndYear}</p>`;
         }
         if (show.numberOfEpisodes) {
-        showInfo += `<p>Number of Episodes: ${show.numberOfEpisodes}</p>`;
+            showInfo += `<p>Number of Episodes: ${show.numberOfEpisodes}</p>`;
         }
     } else {
         showInfo += `<h2>${show.title}</h2><img src="${show.img}">`;
     }
-    showContainer.innerHTML = showInfo
+    showContainer.innerHTML = showInfo;
+}
 
+async function displayForm() {
     const formContainer = document.querySelector('.form-container');
     const form = `
     <form>
@@ -63,38 +88,74 @@ window.addEventListener('load', async () => {
     </form>
     `;
     formContainer.innerHTML = form;
+}
 
+async function displayReviews(sortOption) {
+    const showId = new URLSearchParams(window.location.search).get("showId");
     const reviewContainer = document.querySelector('.review-container');
-    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}`);
+    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}&sort=${sortOption}`);
     const reviewArea = await reviews.text();
-    reviewContainer.innerHTML = reviewArea;
+    await displayFilter(sortOption);
+    reviewContainer.innerHTML += reviewArea;
+}
 
-    document.querySelector('form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const season = document.querySelector('#season').value;
-        const episode = document.querySelector('#episode').value;
-        const rating = document.querySelector('input[name="rating"]:checked').value;
-        const review = document.querySelector('#review').value;
+async function displayFilter(sortOption) {
+    const reviewContainer = document.querySelector('.review-container');
+    const filter = `
+    <div class="sort-container">
+        <label for="sort-reviews">Sort by rating: </label>
+        <select id="sort-reviews">
+        <option value="" ${sortOption === "" ? "selected" : ""}> </option> 
+        <option value="ascending" ${sortOption === "ascending" ? "selected" : ""}>Ascending</option> 
+        <option value="descending" ${sortOption === "descending" ? "selected" : ""}>Descending</option>
+        </select>
+    </div>
+    `;
+    reviewContainer.innerHTML = filter;
+}
 
-        const reviewData = {showId, season, episode, rating, review};
+async function submitReview() {
+    const showId = new URLSearchParams(window.location.search).get("showId");
+    const season = document.querySelector('#season').value;
+    const episode = document.querySelector('#episode').value;
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    const review = document.querySelector('#review').value;
 
-        console.log(reviewData);
+    const reviewData = { showId, season, episode, rating, review };
 
-        const response = await fetch('/api/v1/reviews', {
+    console.log(reviewData);
+
+    const response = await fetch('/api/v1/reviews', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(reviewData)
-        });
-
-        if (response.ok) {
-            formContainer.innerHTML = '<div id="response"> <h2>Review submitted successfully!</h2><button id="reload-button">Reload Page</button> </div>';
-        } else {
-            formContainer.innerHTML = '<div id="response"> <h2>Failed to submit review. Please try again later.</h2><button id="reload-button">Reload Page</button> </div>';
-        }
-        document.getElementById('reload-button').addEventListener('click', () => {
-            window.location.reload();
-          });
     });
-});
+
+    const formContainer = document.querySelector('.form-container');
+    if (response.ok) {
+        formContainer.innerHTML = '<div id="response"> <h2>Review submitted successfully!</h2><button id="reload-button">Reload Page</button> </div>';
+        await updateReviewedShows();
+    } else {
+        formContainer.innerHTML = '<div id="response"> <h2>Failed to submit review. Please try again later.</h2><button id="reload-button">Reload Page</button> </div>';
+    }
+
+    document.getElementById('reload-button').addEventListener('click', () => {
+        window.location.reload();
+    });
+}
+
+async function updateReviewedShows() {
+    const showId = new URLSearchParams(window.location.search).get("showId")
+    const img = document.querySelector('.showDetail-container img').getAttribute('src');
+    const title = document.querySelector('.showDetail-container h2').textContent;
+    const showData = { showId, title, img };
+    await fetch('/api/v1/shows', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(showData)
+    });
+}
