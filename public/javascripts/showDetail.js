@@ -99,6 +99,13 @@ async function displayReviews(sortOption, selectedSeason, selectedEpisode) {
     const reviewArea = await reviews.text();
     await displayFilter(sortOption, selectedSeason);
     reviewContainer.innerHTML += reviewArea;
+    // Filter Reviews
+    document.getElementById('submit-filters').addEventListener('click', () => {
+        const sortOption = document.getElementById('sort-reviews').value;
+        const selectedSeason = document.getElementById('filter-season').value;
+        const selectedEpisode = document.getElementById('filter-episode').value;
+        displayReviews(sortOption, selectedSeason, selectedEpisode);
+    });
 }
 
 async function displayFilter(sortOption, selectedSeason, selectedEpisode) {
