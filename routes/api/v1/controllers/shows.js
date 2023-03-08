@@ -16,15 +16,16 @@ router.get('/', async (req, res) => {
     res.status(200).json(previews);
 });
 
-// when user clicks on a show, this post router checks to see if the show is already in the schema
+// when user posts a review for the show, this post router checks to see if the show is already in the show schema
 // if it is not then it adds the show to the database
 router.post('/', async(req, res) => {
-    let allShows = req.models.show.find({});
-    let filteredShows = allShows.filter(show => show.showId == req.query.showId)
-    if (filteredShows.length == 0) {
+    console.log(req.body)
+    let show = await req.models.show.find({ showId: req.body.showId })
+    console.log(show)
+    if (show.length == 0) {
         try{
             const newShow = new req.models.show({
-                showId: req.query.showId,
+                showId: req.body.showId,
                 title: req.body.title,
                 img: req.body.img
             })
