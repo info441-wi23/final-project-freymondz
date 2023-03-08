@@ -32,8 +32,10 @@ As developers, we would like to build this application because this is an opport
 
 | Endpoint | HTTP Method | Purpose |
 |----------|-------------|---------|
-| `/signup`| `POST`      | sign up a new user and create a new account |
-| `/login` | `POST`      | log in in existin guser and retrieve a unique authentication token |
+| `/users/{username}`| `GET`      | retrieve user information |
+| `/users/login` | `POST`      | login  existing user |
+| `/users/identity` | `GET` | identify if a user has logged in or not |
+| `/users/picture` | POST | upload profile picture to MongoDB |
 | `/shows` | `GET`       | get all shows stored in the MongoDB if the keyword is empty |
 | `/shows` | `POST`      | when user posts a review for the show, the endpoint checks to see if the show is already in the show schema if it is not then it adds the show to the database |
 | `/shows/{showId}` |  `GET` | retrieve information about a specfic tv show including reviews |
