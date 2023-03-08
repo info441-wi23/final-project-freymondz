@@ -5,12 +5,21 @@ router.get('/', async (req, res) => {
   try {
     let showId = req.query.showId;
     let sort = req.query.sort;
+    let selectedSeason = req.query.season;
+    let selectedEpisode = req.query.episode;
+    
     let showReviews = await req.models.review.find({ showId: showId });
 
     if (sort === 'ascending') {
       showReviews = showReviews.sort((a, b) => a.rating - b.rating);
     } else if (sort === 'descending') {
       showReviews = showReviews.sort((a, b) => b.rating - a.rating);
+    }
+    if (selectedSeason !== '') {
+      showReviews = showReviews.filter(review => review.season == selectedSeason);
+    }
+    if (selectedSeason !== '') {
+      showReviews = showReviews.filter(review => review.episode == selectedEpisode);
     }
     
     let reviews = showReviews.map(review => {

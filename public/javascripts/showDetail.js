@@ -6,7 +6,7 @@ window.addEventListener('load', async () => {
     await displayForm();
 
     // Display Reviews
-    await displayReviews('');
+    await displayReviews('', '', '');
 
     // Submit Review
     document.querySelector('form').addEventListener('submit', async (event) => {
@@ -15,9 +15,11 @@ window.addEventListener('load', async () => {
     });
 
     // Filter Reviews
-    document.getElementById('sort-reviews').addEventListener('change', (event) => {
-        const sortOption = event.target.value;
-        displayReviews(sortOption);
+    document.getElementById('submit-filters').addEventListener('click', () => {
+        const sortOption = document.getElementById('sort-reviews').value;
+        const selectedSeason = document.getElementById('filter-season').value;
+        const selectedEpisode = document.getElementById('filter-episode').value;
+        displayReviews(sortOption, selectedSeason, selectedEpisode);
     });
 });
 
@@ -90,25 +92,40 @@ async function displayForm() {
     formContainer.innerHTML = form;
 }
 
-async function displayReviews(sortOption) {
+async function displayReviews(sortOption, selectedSeason, selectedEpisode) {
     const showId = new URLSearchParams(window.location.search).get("showId");
     const reviewContainer = document.querySelector('.review-container');
-    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}&sort=${sortOption}`);
+    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}&sort=${sortOption}&season=${selectedSeason}&episode=${selectedEpisode}`);
     const reviewArea = await reviews.text();
-    await displayFilter(sortOption);
+    await displayFilter(sortOption, selectedSeason);
     reviewContainer.innerHTML += reviewArea;
 }
 
-async function displayFilter(sortOption) {
+async function displayFilter(sortOption, selectedSeason, selectedEpisode) {
     const reviewContainer = document.querySelector('.review-container');
     const filter = `
-    <div class="sort-container">
-        <label for="sort-reviews">Sort by rating: </label>
-        <select id="sort-reviews">
-        <option value="" ${sortOption === "" ? "selected" : ""}> </option> 
-        <option value="ascending" ${sortOption === "ascending" ? "selected" : ""}>Ascending</option> 
-        <option value="descending" ${sortOption === "descending" ? "selected" : ""}>Descending</option>
-        </select>
+    <div class="filter-container">
+        <div class="sort-container">
+            <label for="sort-reviews">Rating: </label>
+            <select id="sort-reviews">
+            <option value="" ${sortOption == "" ? "selected" : ""}> </option> 
+            <option value="ascending" ${sortOption == "ascending" ? "selected" : ""}>Ascending</option> 
+            <option value="descending" ${sortOption == "descending" ? "selected" : ""}>Descending</option>
+            </select>
+        </div>
+        <div class="season-container">
+            <label for="filter-season">Season: </label>
+            <select id="filter-season">
+            <option value=""></option> 
+            ${Array.from({ length: 10 }, (_, index) => index + 1).map(season =>
+        `<option value="${season}" ${selectedSeason == season ? "selected" : ""}>Season ${season}</option>`).join('')}
+            </select>
+        </div>
+        <div class="episode-container"> 
+            <label for="filter-episode">Episode: </label> 
+            <input type="number" id="filter-episode" value="${selectedEpisode}" min="1"> 
+        </div>
+        <button id="submit-filters">Filter</button>
     </div>
     `;
     reviewContainer.innerHTML = filter;

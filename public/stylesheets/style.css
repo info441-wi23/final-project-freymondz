@@ -334,13 +334,14 @@ form button[type="submit"]:hover {
     margin-left: 3rem;
 }
 
-.sort-container {
+.filter-container {
     display: flex;
     align-items: left;
     margin: 1rem;
+    margin-right: 3rem;
   }
 
-  .sort-container label {
+  .sort-container label, .season-container label, .episode-container label {
     text-align: left;
     color: #fff;
     font-size: 1rem;
@@ -348,10 +349,29 @@ form button[type="submit"]:hover {
     margin: 0.2rem;
   }
 
-  .sort-container select {
+  .sort-container select, .season-container select {
     padding: 5px;
     font-size: 14px;
   }
+
+  .episode-container input {
+    padding: 5px;
+    font-size: 14px;
+    width: 2rem;
+  }
+
+.filter-container button {
+    margin-top: 1.2rem;
+    padding: 0.5rem 1rem;
+    background-color: #7a26c1;
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+}
 
 .review-item {
     display: flex;
