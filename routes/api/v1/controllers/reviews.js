@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     let selectedEpisode = req.query.episode;
     
     let showReviews = await req.models.review.find({ showId: showId });
+    console.log(showReviews)
 
     if (sort === 'ascending') {
       showReviews = showReviews.sort((a, b) => a.rating - b.rating);
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
     if (selectedSeason !== '') {
       showReviews = showReviews.filter(review => review.season == selectedSeason);
     }
-    if (selectedSeason !== '') {
+    if (selectedSeason !== '' && selectedEpisode !== '') {
       showReviews = showReviews.filter(review => review.episode == selectedEpisode);
     }
     
@@ -45,7 +46,7 @@ router.get('/', async (req, res) => {
       }
       return `<div class="review-item">${reviewHTML}</div>`;
     });
-    
+    console.log(showReviews)
     if (reviews.length == 0) {
       res.send(`<div class="review-item"><h2>No reviews yet!</h2></div>`);
     } else {
