@@ -1,10 +1,19 @@
 import { Router } from 'express';
-const router = Router();
+import multer from 'multer';
+import fs from 'fs';
 
-router.post('/picture', async (req, res) => {
+const router = Router();
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/picture', upload.single('picture'), async (req, res) => {
+    const filePath = req.file.path;
+    const buffer = fs.readFileSync(filePath);
+    console.log(req.file.buffer);
+    console.log(req.session.account?.username);
+    console.log(req.session.account?.name);
     await req.models.user.findOneAndUpdate(
         { username: req.session.account?.username, name: req.session.account?.name },
-        { picture: req.body.picture },
+        { picture: buffer },
     );
     res.json({ status: 'success' });
 });
