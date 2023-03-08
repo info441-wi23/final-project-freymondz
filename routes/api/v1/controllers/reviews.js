@@ -6,14 +6,18 @@ router.get('/', async (req, res) => {
   try {
     let showId = req.query.showId;
     let showReviews = await req.models.review.find({ showId: showId });
-    if (showReviews == ' ') {
-      return `<div class="review-item"> No reviews for this show yet! </div>`
-    }
-
+    
     let reviews = showReviews.map(review => {
       let reviewHTML = '';
+      if (review.rating) {
+        let stars = '';
+        for (let i = 0; i < review.rating; i++) {
+          stars += '⭐️';
+        }
+        reviewHTML += `<h1>${stars}</h1>`;
+      }
       if (review.username) {
-        reviewHTML += `<p>Username: ${review.username}</p>`;
+        reviewHTML += `<p>User: ${review.username}</p>`;
       }
       if (review.season) {
         reviewHTML += `<p>Season: ${review.season}</p>`;
@@ -21,15 +25,18 @@ router.get('/', async (req, res) => {
       if (review.episode) {
         reviewHTML += `<p>Episode: ${review.episode}</p>`;
       }
-      if (review.rating) {
-        reviewHTML += `<p>Rating: ${review.rating}</p>`;
-      }
       if (review.review) {
         reviewHTML += `<p>Review: ${review.review}</p>`;
       }
       return `<div class="review-item">${reviewHTML}</div>`;
     });
-    res.send(reviews.join(''));
+    
+    if (reviews.length == 0) {
+      res.send(`<div class="review-item"><h2>No reviews yet!</h2></div>`);
+    } else {
+      res.send(reviews.join(''));
+    }
+
   } catch (error) {
     res.status(500).send({ status: 'error', error: error });
   }
