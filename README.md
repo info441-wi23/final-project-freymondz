@@ -24,7 +24,10 @@ As developers, we would like to build this application because this is an opport
 |  `P2`    | as a viewer | I want to be able to make a review on a show and specify which episode the review is for | The client would call a `POST` request on the backend that then gets saved to the `MongoDB`. The client would also show the review from the frontend by calling a `GET` request for reviews.
 |  `P2`    | as a viewer | I would like to create an account to post and review shows | Have a login/signup page that gets stored in `MongoDB`. We would use something like `Azure` for authentication and have sessions so users don't have to 
 |  `P2`    | as a registered user | I would like to edit my profile(upload a picture, update my name, etc.) | `MongoDB` would store users' profile information. The client would use a `GET` request ot load information and a put request to change the corresponding fields.
-|  `P2`    | as a user/viewer | I would like to filter through reviews by ratings | When we call the backend we can sort the returned shows by their user ratings.
+|  `P2`    | as a user/viewer | I would like to filter through reviews by season | When we call the backend we can sort the returned show reviews by their seasons.
+|  `P2`    | as a user/viewer | I would like to filter through reviews by episode | When we call the backend we can sort the returned show reviews by their episodes.
+|  `P2`    | as a user/viewer | I would like to sort reviews by rating | When we call the backend we can sort the returned show reviews by their ratings
+
 
 ### End Points
 
