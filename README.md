@@ -25,7 +25,6 @@ As developers, we would like to build this application because this is an opport
 |  `P2`    | as a viewer | I would like to create an account to post and review shows | Have a login/signup page that gets stored in `MongoDB`. We would use something like `Azure` for authentication and have sessions so users don't have to 
 |  `P2`    | as a registered user | I would like to edit my profile(upload a picture, update my name, etc.) | `MongoDB` would store users' profile information. The client would use a `GET` request ot load information and a put request to change the corresponding fields.
 |  `P2`    | as a user/viewer | I would like to filter through reviews by ratings | When we call the backend we can sort the returned shows by their user ratings.
-|  `P2`    | as a user/viewer | I would like to sort reviews by chronology | We can sort reviews by when they were uploaded to the DB
 
 ### End Points
 
