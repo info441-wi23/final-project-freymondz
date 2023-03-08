@@ -10,7 +10,7 @@ As developers, we would like to build this application because this is an opport
 
 ### Architectural Diagram Mapping
 
-![Architectural Diagram](https://user-images.githubusercontent.com/37636251/217921328-6879213d-d53a-4a00-8b8f-72c13958e4dd.jpg)
+![Architectural Diagram](https://user-images.githubusercontent.com/37636251/223833921-814aaae7-862c-4183-9ea8-a6553e4f62db.jpg)
 
 ### User Stories
 
