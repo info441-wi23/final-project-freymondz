@@ -18,13 +18,13 @@ As developers, we would like to build this application because this is an opport
 | ---------|------|-------------|-------------------------|
 |  `P0`    | as a viewer | I want to be able to explore the shows that are recommended to me | the client would use a `GET` request to load in stored shows on `MongoDB` which the client would then display |
 |  `P0`    | as a viewer | I want to be able to find a show that I am searching for | the client would use a `GET` request to the IMDB API to find the show that matches with the entered words which the client would then display them |
-|  `P0`    | as a guest user | I want to be able to rate and review a show as a guest user| The client would call a `POST` request on the backend that then gets saved to `MongoDB`. The client would also show the rating from the frontend by calling a `GET` reqest for ratings. 
 |  `P0`    | as a viewer | I want to be able to see other people's review's on the show | `MongoDB` would store all users' reviews. Our server would get the data from `MongoDB` when the page is loaded.
-|  `P1`    | as a guest user | I want to be able to rate and review a show for a specific season and episode as a guest | The client would call a `POST` request on the backend that then gets saved to `MongoBD`. The client would also show the rating from the frontend by calling a `GET` reqeust for reviews.
-|  `P2`    | as a a registered user | I would like to create an account to post and review shows | Have a login/signup page that gets stored in `MongoDB`. We would use something like `Azure` for authentication and have sessions so users don't have to 
-|  `P2`    | as a registered user | I would like to edit my profile(upload a picture, update my name, etc.) | `MongoDB` would store users' profile information. The client would use a `GET` request ot load information and a put request to change the corresponding fields.
+|  `P1`    | as a guest user | I want to be able to rate and review a show as a guest user| The client would call a `POST` request on the backend that then gets saved to `MongoDB`. The client would also show the rating from the frontend by calling a `GET` reqest for ratings. 
+|  `P1`    | as a a registered user | I would like to create an account to post and review shows | Have a login/signup page that gets stored in `MongoDB`. We would use something like `Azure` for authentication and have sessions so users don't have to 
+|  `P2`    | as a guest user | I want to be able to rate and review a show for a SPECIFIC season and episode as a guest | The client would call a `POST` request on the backend that then gets saved to `MongoBD`. The client would also show the rating from the frontend by calling a `GET` reqeust for reviews.
+|  `P2`    | as a registered user | I would like to edit my profile | `MongoDB` would store users' profile information. The client would use a `GET` request ot load information and a put request to change the corresponding fields.
 |  `P2`    | as a user/viewer | I would like to filter through reviews by season | When we call the backend we can sort the returned show reviews by their seasons.
-|  `P2`    | as a user/viewer | I would like to filter through reviews by episode | When we call the backend we can sort the returned show reviews by their episodes.
+|  `P2`    | as a user/viewer | I would like to filter through reviews by season and episode | When we call the backend we can sort the returned show reviews by their episodes.
 |  `P2`    | as a user/viewer | I would like to sort reviews by rating | When we call the backend we can sort the returned show reviews by their ratings
 
 
