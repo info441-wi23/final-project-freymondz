@@ -6,20 +6,18 @@ window.addEventListener('load', async () => {
     await displayForm();
 
     // Display Reviews
-    await displayReviews();
+    await displayReviews('');
 
     // Submit Review
     document.querySelector('form').addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        const errorMessage = document.querySelector('#error-message');
-        const rating = document.querySelector('input[name="rating"]:checked');
-        if (!rating) {
-            errorMessage.innerHTML = 'Please select a rating!';
-            return;
-        }
-
         await submitReview();
+    });
+
+    // Filter Reviews
+    document.getElementById('sort-reviews').addEventListener('change', (event) => {
+        const sortOption = event.target.value;
+        displayReviews(sortOption);
     });
 });
 
@@ -92,12 +90,28 @@ async function displayForm() {
     formContainer.innerHTML = form;
 }
 
-async function displayReviews() {
+async function displayReviews(sortOption) {
     const showId = new URLSearchParams(window.location.search).get("showId");
     const reviewContainer = document.querySelector('.review-container');
-    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}`);
+    const reviews = await fetch(`/api/v1/reviews/?showId=${showId}&sort=${sortOption}`);
     const reviewArea = await reviews.text();
-    reviewContainer.innerHTML = reviewArea;
+    await displayFilter(sortOption);
+    reviewContainer.innerHTML += reviewArea;
+}
+
+async function displayFilter(sortOption) {
+    const reviewContainer = document.querySelector('.review-container');
+    const filter = `
+    <div class="sort-container">
+        <label for="sort-reviews">Sort by rating: </label>
+        <select id="sort-reviews">
+        <option value="" ${sortOption === "" ? "selected" : ""}> </option> 
+        <option value="ascending" ${sortOption === "ascending" ? "selected" : ""}>Ascending</option> 
+        <option value="descending" ${sortOption === "descending" ? "selected" : ""}>Descending</option>
+        </select>
+    </div>
+    `;
+    reviewContainer.innerHTML = filter;
 }
 
 async function submitReview() {
@@ -126,6 +140,7 @@ async function submitReview() {
     } else {
         formContainer.innerHTML = '<div id="response"> <h2>Failed to submit review. Please try again later.</h2><button id="reload-button">Reload Page</button> </div>';
     }
+
     document.getElementById('reload-button').addEventListener('click', () => {
         window.location.reload();
     });
@@ -136,7 +151,6 @@ async function updateReviewedShows() {
     const img = document.querySelector('.showDetail-container img').getAttribute('src');
     const title = document.querySelector('.showDetail-container h2').textContent;
     const showData = { showId, title, img };
-    console.log(showData)
     await fetch('/api/v1/shows', {
         method: 'POST',
         headers: {

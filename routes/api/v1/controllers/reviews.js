@@ -1,11 +1,17 @@
 import express from 'express';
 var router = express.Router();
 
-// get all shows stored in the MongoDB if the keyword is empty
 router.get('/', async (req, res) => {
   try {
     let showId = req.query.showId;
+    let sort = req.query.sort;
     let showReviews = await req.models.review.find({ showId: showId });
+
+    if (sort === 'ascending') {
+      showReviews = showReviews.sort((a, b) => a.rating - b.rating);
+    } else if (sort === 'descending') {
+      showReviews = showReviews.sort((a, b) => b.rating - a.rating);
+    }
     
     let reviews = showReviews.map(review => {
       let reviewHTML = '';

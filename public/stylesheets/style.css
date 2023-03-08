@@ -314,7 +314,7 @@ form button[type="submit"]:hover {
 }
 
 .rating label {
-    color: #777;
+    color: #fff;
     font-size: 2rem;
     cursor: pointer;
 }
@@ -333,6 +333,25 @@ form button[type="submit"]:hover {
 .review-container {
     margin-left: 3rem;
 }
+
+.sort-container {
+    display: flex;
+    align-items: left;
+    margin: 1rem;
+  }
+
+  .sort-container label {
+    text-align: left;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.2rem;
+  }
+
+  .sort-container select {
+    padding: 5px;
+    font-size: 14px;
+  }
 
 .review-item {
     display: flex;
