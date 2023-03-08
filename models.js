@@ -19,7 +19,7 @@ models.show = mongoose.model("show", showSchema);
 const userSchema = new mongoose.Schema({
     username: String,
     name: String,
-    picture: String,
+    picture: Buffer,
 });
 
 models.user = mongoose.model("user", userSchema);
