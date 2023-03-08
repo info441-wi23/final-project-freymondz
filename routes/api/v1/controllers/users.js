@@ -1,10 +1,18 @@
 import { Router } from 'express';
 const router = Router();
 
+router.post('/picture', async (req, res) => {
+    await req.models.user.findOneAndUpdate(
+        { username: req.session.account?.username, name: req.session.account?.name },
+        { picture: req.body.picture },
+    );
+    res.json({ status: 'success' });
+});
+
 router.post('/login', async (req, res) => {
     await req.models.user.findOneAndUpdate(
         { username: req.session.account?.username, name: req.session.account?.name },
-        { username: req.session.account?.username, name: req.session.account?.name, picture: null },
+        { username: req.session.account?.username, name: req.session.account?.name },
         { upsert: true }
     );
     res.json({ status: 'success' });
@@ -25,8 +33,8 @@ router.get('/identity', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const username = req.query.username
-    const users = await req.models.user.findOne({ username: username});
+    const username = req.query.username;
+    const users = await req.models.user.findOne({ username: username });
     res.status(200).json({ status: 'success', data: users });
 });
 
