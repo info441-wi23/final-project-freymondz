@@ -171,7 +171,7 @@ body {
     text-align: center;
     border-radius: 0.6rem;
     background: #272727;
-    width: 70%;
+    width: 75%;
     box-shadow: 0.5rem 0.4rem 0.5rem #7a26c1;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
@@ -200,7 +200,7 @@ body {
 }
 
 .showDetail-container p {
-    text-align: left;
+    text-align: center;
     color: #fff;
     font-size: 1rem;
 }
@@ -331,7 +331,7 @@ form button[type="submit"]:hover {
 /* Third Section (Reviews) Styling */
 
 .review-container {
-    margin-left: 2rem;
+    margin-left: 3rem;
 }
 
 .review-item {
@@ -346,10 +346,26 @@ form button[type="submit"]:hover {
     width: 80%;
 }
 
+.review-item h1 {
+    text-align: left;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.2rem;
+}
+
+.review-item h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem;
+}
+
 .review-item p {
     text-align: left;
     color: #fff;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: bold;
     margin: 0.2rem;
 }
