@@ -22,5 +22,7 @@ async function getShows() {
     const previews = results.map(show => show).join('');
     showsContainer.innerHTML = previews;
     
-    showsContainer.scrollIntoView({ behavior: 'smooth'});
+    window.requestAnimationFrame(() => {
+        showsContainer.scrollIntoView({ behavior: 'smooth' });
+      });
 }
