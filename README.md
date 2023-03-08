@@ -35,10 +35,13 @@ As developers, we would like to build this application because this is an opport
 |----------|-------------|---------|
 | `/signup`| `POST`      | sign up a new user and create a new account |
 | `/login` | `POST`      | log in in existin guser and retrieve a unique authentication token |
-| `/shows` | `GET`       | retrieve a list of all avaliable shows |
-| `/shows` | `POST`      | create a new etv show for reviewing |
-| `/shows/{id}` |  `get` | retrieve information about a specfic tv show including reviews |
-| `/shows/{id}/reviews`| `POST` | post a review |
+| `/shows` | `GET`       | get all shows stored in the MongoDB if the keyword is empty |
+| `/shows` | `POST`      | when user posts a review for the show, the endpoint checks to see if the show is already in the show schema if it is not then it adds the show to the database |
+| `/shows/{showId}` |  `GET` | retrieve information about a specfic tv show including reviews |
+| `/shows/explore/{showId}` |  `GET` | retrieve tv shows that contain the user input keyword using external API |
+| `/shows/find/{showId}` |  `GET` | retrieve a specific show's information using external API |
+| `/reviews/{showId}`| `GET` | retrieve the user reviews of a specific show |
+| `/reviews/{showId}`| `POST` | post the user review for the specific show |
 
 ### Schema:
 
@@ -48,10 +51,8 @@ As developers, we would like to build this application because this is an opport
 {
   _id: ObjectId(),
   username: String,
-  profile: {
-    picture: String,
-    name: String
-  }
+  name: String,
+  picture: String,
 }
 ```
 
@@ -71,11 +72,10 @@ As developers, we would like to build this application because this is an opport
 ```js
 {
   _id: ObjectId(),
-  userId: ObjectId(),
   showId: String,
   username: String,
-  rating: Number,
   review: String,
+  rating: Number,
   season: Number,
   eposide: Number
 }
