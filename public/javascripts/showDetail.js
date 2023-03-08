@@ -32,7 +32,7 @@ async function displayShowInfo() {
     let show = await response.json();
     show = show[0];
 
-    let showInfo;
+    let showInfo = "";
     if (!response || response.length == 0 || !show || show.length == 0) {
         response = await fetch(`/api/v1/shows/find/?showId=${showId}`);
         show = await response.json();
