@@ -17,7 +17,7 @@ As developers, we would like to build this application because this is an opport
 | Priority | User | Description | Technical Implementation |
 | ---------|------|-------------|-------------------------|
 |  `P0`    | as a viewer | I want to be able to explore the shows that are recommended to me | the client would use a `GET` request to load in stored shows on `MongoDB` which the client would then display |
-|  `P0`    | as a viewer | I want to be able to find a show that I am searching for | the client would use a `GET` request to the IMDB API to find the show that matches with the entered words which the client would then display them |
+|  `P0`    | as a viewer | I want to be able to find a show I want to view reviews for by enter search-terms using the search bar | the client would use a `GET` request to the IMDB API to find the show that matches with the entered words which the client would then display them |
 |  `P0`    | as a viewer | I want to be able to see other people's review's on the show | `MongoDB` would store all users' reviews. Our server would get the data from `MongoDB` when the page is loaded.
 |  `P1`    | as a guest user | I want to be able to rate and review a show as a guest user| The client would call a `POST` request on the backend that then gets saved to `MongoDB`. The client would also show the rating from the frontend by calling a `GET` reqest for ratings. 
 |  `P1`    | as a a registered user | I would like to create an account to post and review shows | Have a login/signup page that gets stored in `MongoDB`. We would use something like `Azure` for authentication and have sessions so users don't have to 
