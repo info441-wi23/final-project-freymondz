@@ -27,7 +27,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.4.4",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
